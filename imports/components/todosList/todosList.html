@@ -1,0 +1,19 @@
+<header>
+  <h1 ng-show="$ctrl.currentUser">Forum</h1>
+
+    <label class="hide-completed" ng-show="$ctrl.currentUser">
+    </label>
+    <login-buttons></login-buttons>     
+    <form class="new-task" ng-submit="$ctrl.addTask($ctrl.newTask)" ng-show="$ctrl.currentUser">
+      <input ng-model="$ctrl.newTask" type="text" name="text" placeholder="Type to add new comments"/>
+    </form>
+  </header>
+   
+  <ul>
+    <li ng-repeat="task in $ctrl.tasks" ng-class="{'checked': task.checked}" ng-show="$ctrl.currentUser">
+      <button class="delete" ng-show="$ctrl.currentUser._id == task.owner" ng-click="$ctrl.removeTask(task)">&times;</button>
+      <span class="text">
+        <strong>{{task.email}}</strong> - {{task.text}}
+      </span>
+    </li>
+  </ul>
